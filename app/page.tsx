@@ -1,9 +1,13 @@
-import Image from "next/image";
+import { getLeituras } from "@/actions/leituras";
 
-export default function Home() {
-  return (
-    <div className="">
-      Leituras
-    </div>
-  );
+export default async function Home() {
+	const leituras = await getLeituras();
+	console.log(leituras);
+
+	return (
+		<div className="">
+			<h1>Leituras</h1>
+			<div className="">{JSON.stringify(leituras)}</div>
+		</div>
+	);
 }
