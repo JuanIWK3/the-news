@@ -1,17 +1,9 @@
-import { FileMigrationProvider, Kysely, Migrator } from "kysely";
-import type { KyselyDatabase } from "./types";
-import { BunSqliteDialect } from "kysely-bun-sqlite";
-import { Database } from "bun:sqlite";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { FileMigrationProvider, Kysely, Migrator } from "kysely";
+import { db } from "./db";
 
 async function migrateToLatest() {
-	const db = new Kysely<KyselyDatabase>({
-		dialect: new BunSqliteDialect({
-			database: new Database("db.sqlite"),
-		}),
-	});
-
 	const migrator = new Migrator({
 		db,
 		provider: new FileMigrationProvider({

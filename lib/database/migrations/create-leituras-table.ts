@@ -1,21 +1,25 @@
 import type { Kysely } from "kysely";
-import type { KyselyDatabase } from "../types";
+import type { Database } from "../types";
 
-export async function up(db: Kysely<KyselyDatabase>) {
+export async function up(db: Kysely<Database>) {
 	await db.schema
 		.createTable("leituras")
-		.addColumn("id", "integer", (col) => col.primaryKey())
-		.addColumn("email", "varchar", (col) => col.notNull())
+		.addColumn(
+			"id",
+			"uuid",
+			(col) => col.primaryKey().defaultTo(db.fn("gen_random_uuid")), // Gera UUID automaticamente
+		)
+		.addColumn("email", "varchar")
 		.addColumn("status", "varchar")
 		.addColumn("utm_source", "varchar")
 		.addColumn("utm_medium", "varchar")
 		.addColumn("utm_campaign", "varchar")
 		.addColumn("utm_channel", "varchar")
 		.addColumn("referring_site", "varchar")
-		.addColumn("created_at", "date")
+		.addColumn("created_at", "timestamp", (col) => col.defaultTo(db.fn("now")))
 		.execute();
 }
 
-export async function down(db: Kysely<KyselyDatabase>): Promise<void> {
+export async function down(db: Kysely<Database>): Promise<void> {
 	await db.schema.dropTable("leituras").execute();
 }

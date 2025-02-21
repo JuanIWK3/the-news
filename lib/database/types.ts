@@ -15,12 +15,12 @@ export interface LeituraTable {
 	id: string;
 	email: string;
 	status: string;
-	// utm_source: string;
-	// utm_medium: string;
-	// utm_campaign: string;
-	// utm_channel: string;
-	// referring_site: string;
-	// created_at: Date;
+	utm_source: string;
+	utm_medium: string;
+	utm_campaign: string;
+	utm_channel: string;
+	referring_site: string;
+	created_at: Date;
 }
 
 export type Leitura = Selectable<LeituraTable>;
