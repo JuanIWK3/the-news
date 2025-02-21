@@ -7,7 +7,7 @@ import {
 	type Updateable,
 } from "kysely";
 
-export interface KyselyDatabase {
+export interface Database {
 	leituras: LeituraTable[];
 }
 
