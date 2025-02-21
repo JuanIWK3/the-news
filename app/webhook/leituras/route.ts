@@ -8,10 +8,7 @@ export async function POST(request: Request) {
 	try {
 		const result = await db
 			.insertInto("leituras")
-			.values({
-				email: res.email,
-				status: res.status,
-			})
+			.values(res)
 			.executeTakeFirst();
 
 		console.log(result.insertId);

@@ -6,13 +6,13 @@ export async function up(db: Kysely<KyselyDatabase>) {
 		.createTable("leituras")
 		.addColumn("id", "integer", (col) => col.primaryKey())
 		.addColumn("email", "varchar", (col) => col.notNull())
-		.addColumn("status", "varchar", (col) => col.notNull())
-		// .addColumn("utm_source", "varchar")
-		// .addColumn("utm_medium", "varchar")
-		// .addColumn("utm_campaign", "varchar")
-		// .addColumn("utm_channel", "varchar")
-		// .addColumn("referring_site", "varchar")
-		// .addColumn("created_at", "date")
+		.addColumn("status", "varchar")
+		.addColumn("utm_source", "varchar")
+		.addColumn("utm_medium", "varchar")
+		.addColumn("utm_campaign", "varchar")
+		.addColumn("utm_channel", "varchar")
+		.addColumn("referring_site", "varchar")
+		.addColumn("created_at", "date")
 		.execute();
 }
 
